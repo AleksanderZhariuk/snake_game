@@ -25,6 +25,8 @@ screen.onkey(snake.up, 'Up')
 screen.onkey(snake.down, 'Down')
 screen.onkey(snake.left, 'Left')
 screen.onkey(snake.right, 'Right')
+screen.onkey(screen.bye, 'Escape')
+
 
 # SNAKE MOVING
 game_is_on = True
@@ -40,14 +42,14 @@ while game_is_on:
         score.increase_score()
 #     Detect collision with wall
     if snake.snake_head.xcor() > 285 or snake.snake_head.xcor() < -285 or snake.snake_head.ycor() > 285 or snake.snake_head.ycor() < -285:
-        score.game_over()
-        game_is_on = False
+        score.reset()
+        snake.reset()
 
 #     Detect collision with tail
     for segment in snake.segments[1:]:
         if snake.snake_head.distance(segment) < 10:
-            score.game_over()
-            game_is_on = False
+            score.reset()
+            snake.reset()
 
 # END THE PROGRAM
 screen.exitonclick()
